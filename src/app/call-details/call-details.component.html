@@ -1,0 +1,56 @@
+<div class="example-container" *ngIf="call">
+  <h2>Call In Use</h2>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ call.title }}</mat-label>
+      <input matInput placeholder="Title" [(ngModel)]="call.title" [formControl]="titleControl">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Title</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ call.firstname}}</mat-label>
+      <input matInput placeholder="First Name" [(ngModel)]="call.firstname" [formControl]="firstnameControl">
+      <mat-icon matSuffix>build</mat-icon>
+      <mat-hint>First Name</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ call.surname}}</mat-label>
+      <input matInput placeholder="Surname" [(ngModel)]="call.surname" [formControl]="surnameControl">
+      <mat-icon matSuffix>code</mat-icon>
+      <mat-hint>Surname</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ call.mobilephone }}</mat-label>
+      <input matInput placeholder="Mobile" [(ngModel)]="call.mobilephone" [formControl]="mobileControl">
+      <mat-icon matSuffix>favorite</mat-icon>
+      <mat-hint>Mobile</mat-hint>
+    </mat-form-field>
+
+    <a mat-raised-button color="primary" href="tel:{{call.mobilephone}}">
+      <mat-icon matSuffix>phone_iphone</mat-icon>
+    </a>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ call.homephone }}</mat-label>
+      <input matInput placeholder="Home" [(ngModel)]="call.homephone" [formControl]="homeControl">
+      <mat-icon matSuffix>pets</mat-icon>
+      <mat-hint>Home</mat-hint>
+    </mat-form-field>
+    <a mat-raised-button color="primary" href="tel:{{call.homephone}}">
+      <mat-icon matSuffix>phone</mat-icon>
+    </a>
+  </p>
+
+  <div>
+    <button mat-raised-button color="primary" (click)="update(call)">Update</button>
+    <button mat-raised-button color="primary" (click)="reset()">Reset</button>
+    <button mat-raised-button color="primary" (click)="complete(call)">Call Completed</button>
+  </div>
+
+</div>

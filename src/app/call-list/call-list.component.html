@@ -1,0 +1,71 @@
+ <mat-form-field>
+   <mat-select [formControl]="typeControl">
+     <mat-option *ngFor="let type of types" [value]="type.id">
+       {{type.name}}
+     </mat-option>
+   </mat-select>
+ </mat-form-field>
+ <mat-form-field>
+   <mat-select [formControl]="statusControl">
+     <mat-option *ngFor="let status of statuses" [value]="status.name">
+       {{status.name}}
+     </mat-option>
+   </mat-select>
+ </mat-form-field>
+ <mat-form-field class="example-full-width">
+   <input matInput [min]="minDate" [max]="maxDate" [(ngModel)]="fromdate"
+          [matDatepicker]="frompicker" placeholder="Choose from date">
+   <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+   <mat-datepicker #frompicker></mat-datepicker>
+ </mat-form-field>
+ <mat-form-field class="example-full-width">
+   <input matInput [min]="minDate" [max]="maxDate" [(ngModel)]="todate"
+          [matDatepicker]="topicker" placeholder="Choose to date">
+   <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+   <mat-datepicker #topicker></mat-datepicker>
+ </mat-form-field>
+ <button mat-raised-button color="accent" (click)="search()" id="search">Search</button>
+
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!--<ng-container matColumnDef="rowIndex">-->
+        <!--<mat-header-cell *matHeaderCellDef> Index </mat-header-cell>-->
+        <!--<mat-cell *matCellDef="let element;index as i;"> {{ i }} </mat-cell>-->
+      <!--</ng-container>-->
+
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.select" (click)="reverseSelection(element)"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} {{element.firstname}} {{element.surname}}</mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="datesold">
+        <mat-header-cell *matHeaderCellDef> Date Sold </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.datesold | date }} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;l"></mat-row>
+    </mat-table>
+</div>
+
+<button mat-raised-button color="primary" (click)="calldetail()" id="makecall">Make call</button>
+
